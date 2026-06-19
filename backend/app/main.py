@@ -3,6 +3,7 @@ from app.database.database import engine
 from app.models.user_model import User
 from fastapi import FastAPI
 from app.api.user_api import router
+from app.api.auth_api import router as auth_router
 
 
 Base.metadata.create_all(
@@ -19,6 +20,12 @@ app.include_router(
 router,
 prefix="/user",
 tags=["User"]
+)
+
+app.include_router(
+auth_router,
+prefix="/auth",
+tags=["Authentication"]
 )
 
 @app.get("/")
